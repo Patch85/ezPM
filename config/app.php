@@ -212,4 +212,17 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Development User Data
+    |--------------------------------------------------------------------------
+    |
+    | These values are used for seeding a default user for development.
+    |
+    */
+
+    'dev_user_name' => env('DEV_USER_NAME'),
+    'dev_user_email' => env('DEV_USER_EMAIL'),
+    'dev_user_password' => env('DEV_USER_PASSWORD'),
+
 ];
