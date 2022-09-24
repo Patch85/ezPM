@@ -22,14 +22,14 @@
                     <x-input-label for="address" :value="__('Address')" />
 
                     <x-text-input id="address" class="mt-1 block w-full" type="text" name="address"
-                        :value="old('address')" placeholder="456 Street Rd" required />
+                        :value="old('address')" placeholder="456 Street Rd" />
                 </div>
 
                 <div class="mt-4">
                     <x-input-label for="description" :value="__('Description')" />
 
                     <x-text-input id="description" class="mt-1 block w-full" type="text" name="description"
-                        :value="old('description')" placeholder="Cadet Housing" required />
+                        :value="old('description')" placeholder="Cadet Housing" />
                 </div>
 
                 <div class="mt-4">

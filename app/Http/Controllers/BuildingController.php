@@ -78,6 +78,26 @@ class BuildingController extends Controller
     {
         return view('buildings.edit', ['building' => $building]);
     }
+
+    /**
+     * Update an existing building with new data
+     *
+     * @param Building $building
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws MassAssignmentException
+     * @throws BindingResolutionException
+     * @throws RouteNotFoundException
+     */
+    public function update(Building $building, Request $request): RedirectResponse
+    {
+        $attributes = $this->validateBuilding($request, $building);
+
+        $building->update($attributes);
+
+        return redirect()->route('buildings.show', ['building' => $building])->with('success', "Building $building->building_number updated");
+    }
+
     /**
      * Validate basic building data
      *
