@@ -66,6 +66,18 @@ class BuildingController extends Controller
     {
         return view('buildings.show', ['building' => $building]);
     }
+
+    /**
+     * Edit a building's details
+     *
+     * @param Building $building
+     * @return View|Factory
+     * @throws BindingResolutionException
+     */
+    public function edit(Building $building): View|Factory
+    {
+        return view('buildings.edit', ['building' => $building]);
+    }
     /**
      * Validate basic building data
      *

@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/buildings/{building:building_number}', [BuildingController::class, 'show'])->name('buildings.show');
 
+    Route::get('/buildings/{building:building_number}/edit', [BuildingController::class, 'edit'])->name('buildings.edit');
 });
 
 require __DIR__ . '/auth.php';
