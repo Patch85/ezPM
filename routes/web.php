@@ -27,6 +27,8 @@ Route::get('/dashboard', function () {
 // Buildings
 Route::middleware('auth')->group(function () {
     Route::get('/buildings', [BuildingController::class, 'index'])->name('buildings.index');
+
+    Route::get('/buildings/new', [BuildingController::class, 'create'])->name('buildings.create');
 });
 
 require __DIR__ . '/auth.php';

@@ -26,5 +26,14 @@ class BuildingController extends Controller
         ]);
     }
 
-    //
+    /**
+     * Add a new building
+     *
+     * @return View|Factory
+     * @throws BindingResolutionException
+     */
+    public function create()
+    {
+        return view('buildings.create');
+    }
 }
