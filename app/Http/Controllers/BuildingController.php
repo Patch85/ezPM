@@ -6,8 +6,12 @@ use App\Models\Building;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Database\Eloquent\MassAssignmentException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class BuildingController extends Controller
 {
@@ -17,7 +21,7 @@ class BuildingController extends Controller
      * @return View|Factory
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View|Factory
     {
         return view('buildings.index', [
             'buildings' => Building::all()->sortBy([
@@ -28,7 +32,7 @@ class BuildingController extends Controller
     }
 
     /**
-     * Add a new building
+     * Render a view, allowing to user to provide data for a new building via a form
      *
      * @return View|Factory
      * @throws BindingResolutionException
@@ -38,17 +42,16 @@ class BuildingController extends Controller
         return view('buildings.create');
     }
 
-
     /**
-     * tore a new building
+     * Creates a new building with validated data from the request
      *
      * @param Request $request
-     * @return View|Factory
+     * @return Redirector
      * @throws BindingResolutionException
      */
-    public function store(Request $request)
+    public function store(Request $request): Redirector
     {
-        $attributes = $this->validateBuilding($request);
+        $attributes = $this->validateBuildingData($request);
 
         Building::create($attributes);
 
@@ -68,7 +71,7 @@ class BuildingController extends Controller
     }
 
     /**
-     * Edit a building's details
+     * Render a view with a form for editing a building's details
      *
      * @param Building $building
      * @return View|Factory
@@ -91,7 +94,7 @@ class BuildingController extends Controller
      */
     public function update(Building $building, Request $request): RedirectResponse
     {
-        $attributes = $this->validateBuilding($request, $building);
+        $attributes = $this->validateBuildingData($request, $building);
 
         $building->update($attributes);
 
@@ -105,7 +108,7 @@ class BuildingController extends Controller
      * @param null|Building $building
      * @return array
      */
-    protected function validateBuilding(Request $request, ?Building $building = null): array
+    protected function validateBuildingData(Request $request, ?Building $building = null): array
     {
         $attributes = $request->validate([
             'building_number' => ['required', Rule::unique('buildings', 'building_number')->ignore($building?->id)],
