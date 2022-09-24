@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/buildings/new', [BuildingController::class, 'create'])->name('buildings.create');
 
     Route::post('/buildings/new', [BuildingController::class, 'store'])->name('buildings.store');
+
+    Route::get('/buildings/{building:building_number}', [BuildingController::class, 'show'])->name('buildings.show');
+
 });
 
 require __DIR__ . '/auth.php';

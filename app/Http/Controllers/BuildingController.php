@@ -54,6 +54,18 @@ class BuildingController extends Controller
 
         return redirect('buildings')->with('success', 'New building added!');
     }
+
+    /**
+     * Show the details for an individual building
+     *
+     * @param Building $building
+     * @return View|Factory
+     * @throws BindingResolutionException
+     */
+    public function show(Building $building): View|Factory
+    {
+        return view('buildings.show', ['building' => $building]);
+    }
     /**
      * Validate basic building data
      *
