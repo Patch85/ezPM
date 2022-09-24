@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BuildingController extends Controller
 {
@@ -35,5 +36,41 @@ class BuildingController extends Controller
     public function create()
     {
         return view('buildings.create');
+    }
+
+
+    /**
+     * tore a new building
+     *
+     * @param Request $request
+     * @return View|Factory
+     * @throws BindingResolutionException
+     */
+    public function store(Request $request)
+    {
+        $attributes = $this->validateBuilding($request);
+
+        Building::create($attributes);
+
+        return redirect('buildings')->with('success', 'New building added!');
+    }
+    /**
+     * Validate basic building data
+     *
+     * @param Request $request
+     * @param null|Building $building
+     * @return array
+     */
+    protected function validateBuilding(Request $request, ?Building $building = null): array
+    {
+        $attributes = $request->validate([
+            'building_number' => ['required', Rule::unique('buildings', 'building_number')->ignore($building?->id)],
+            'description' => ['nullable', 'max:500'],
+            'address' => ['nullable', 'max:255'],
+            'status' => ['required'],
+            'floors' => ['required'],
+        ]);
+
+        return $attributes;
     }
 }

@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/buildings', [BuildingController::class, 'index'])->name('buildings.index');
 
     Route::get('/buildings/new', [BuildingController::class, 'create'])->name('buildings.create');
+
+    Route::post('/buildings/new', [BuildingController::class, 'store'])->name('buildings.store');
 });
 
 require __DIR__ . '/auth.php';
