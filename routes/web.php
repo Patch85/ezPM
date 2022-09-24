@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BuildingController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/buildings', function () {
-    return view('buildings');
-})->middleware(['auth'])->name('buildings');
 
-require __DIR__.'/auth.php';
+// Buildings
+Route::middleware('auth')->group(function () {
+    Route::get('/buildings', [BuildingController::class, 'index'])->name('buildings.index');
+});
+
+require __DIR__ . '/auth.php';
