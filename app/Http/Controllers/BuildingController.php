@@ -110,6 +110,8 @@ class BuildingController extends Controller
      */
     protected function validateBuildingData(Request $request, ?Building $building = null): array
     {
+        $building ??= new Building();
+
         $attributes = $request->validate([
             'building_number' => ['required', Rule::unique('buildings', 'building_number')->ignore($building?->id)],
             'description' => ['nullable', 'max:500'],
