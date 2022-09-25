@@ -12,36 +12,18 @@
                 @method('PUT')
                 @csrf
 
-                <div>
-                    <x-input-label for="building_number" :value="__('Building Number')" />
+                <x-form.input type="text" name="building_number" class="mt-1 w-full" required autofocus
+                    :value="old('building_number', $building->building_number)" :labelValue="__('Building Number')" />
 
-                    <x-text-input id="building_number" class="mt-1 block w-full" type="text" name="building_number"
-                        :value="old('buildingName', $building->building_number)" required autofocus />
-                </div>
+                <x-form.input type="text" name="address" class="w-full" :value="old('address', $building->address)" />
 
-                <div class="mt-4">
-                    <x-input-label for="address" :value="__('Address')" />
+                <x-form.input type="text" name="description" class="w-full" :value="old('description', $building->description)" />
 
-                    <x-text-input id="address" class="mt-1 block w-full" type="text" name="address"
-                        :value="old('address', $building->address)" required />
-                </div>
+                <x-form.input type="number" name="floors" class="w-full" required :value="old('floors', $building->floors)" />
 
-                <div class="mt-4">
-                    <x-input-label for="description" :value="__('Description')" />
+                <x-form.field class="w-full">
 
-                    <x-text-input id="description" class="mt-1 block w-full" type="text" name="description"
-                        :value="old('description', $building->description)" required />
-                </div>
-
-                <div class="mt-4">
-                    <x-input-label for="floors" :value="__('Number of Floors')" />
-
-                    <x-text-input id="floors" class="mt-1 block w-full" type="number" name="floors"
-                        :value="old('floors', $building->floors)" required />
-                </div>
-
-                <div class="mt-4">
-                    <x-input-label for="status" :value="__('Status')" />
+                    <x-form.label for="status" id="status-label" labelValue="Status" />
 
                     <select name="status" id="status" :value="old('status')"
                         class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -54,7 +36,8 @@
                         <option value="Complete" {{ old('status', $building->status) == 'Complete' ? 'selected' : '' }}>
                             Complete</option>
                     </select>
-                </div>
+
+                </x-form.field>
 
                 <div class="mt-4">
                     <x-primary-button>Submit</x-primary-button>
