@@ -18,22 +18,16 @@
 
                     <x-form.input type="number" name="floors" class="w-full" required :value="old('floors', $building->floors)" />
 
-                    <x-form.field class="w-full">
+                    <x-form.select name="status">
 
-                        <x-form.label for="status" id="status-label" labelValue="Status" />
+                        @foreach ($building->statuses as $status)
+                            <option value="{{ $status }}"
+                                {{ old('status', $building->status) == $status ? 'selected' : '' }}>
+                                {{ $status }}
+                            </option>
+                        @endforeach
 
-                        <select name="status" id="status-select" :value="old('status')"
-                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            required>
-
-                            @foreach ($building->statuses as $status)
-                                <option value="{{ $status }}"
-                                    {{ old('status', $building->status) == $status ? 'selected' : '' }}>
-                                    {{ $status }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </x-form.field>
+                    </x-form.select>
                 </div>
 
                 <x-form.input type="text" name="address" class="w-full" :value="old('address', $building->address)" />
