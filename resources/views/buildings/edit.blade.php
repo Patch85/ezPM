@@ -26,17 +26,12 @@
                             class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             required>
 
-                            <option value="To Do" {{ old('status', $building->status) == 'To Do' ? 'selected' : '' }}>
-                                To Do
-                            </option>
-
-                            <option value="In Progress"
-                                {{ old('status', $building->status) == 'In Progress' ? 'selected' : '' }}>In Progress
-                            </option>
-
-                            <option value="Complete"
-                                {{ old('status', $building->status) == 'Complete' ? 'selected' : '' }}>
-                                Complete</option>
+                            @foreach ($building->statuses as $status)
+                                <option value="{{ $status }}"
+                                    {{ old('status', $building->status) == $status ? 'selected' : '' }}>
+                                    {{ $status }}
+                                </option>
+                            @endforeach
                         </select>
                     </x-form.field>
                 </div>

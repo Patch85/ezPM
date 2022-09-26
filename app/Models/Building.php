@@ -46,4 +46,10 @@ class Building extends Model
         'floors',
         'status',
     ];
+
+    public $statuses = [
+        "To Do",
+        "In Progress",
+        "Complete",
+    ];
 }
