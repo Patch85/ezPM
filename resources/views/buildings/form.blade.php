@@ -46,6 +46,16 @@
                     <x-primary-button>Submit</x-primary-button>
                 </div>
             </form>
+
+            @if ($building?->building_number)
+                <form action="{{ route('buildings.destroy', ['building' => $building]) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <x-primary-button type="submit" class="mt-4 text-red-500 hover:text-red-600">
+                        Delete
+                    </x-primary-button>
+                </form>
+            @endif
         </div>
     </div>
 </x-app-layout>

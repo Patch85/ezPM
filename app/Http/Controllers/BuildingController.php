@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use LogicException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class BuildingController extends Controller
@@ -107,6 +108,23 @@ class BuildingController extends Controller
         $building->update($attributes);
 
         return redirect()->route('buildings.show', ['building' => $building])->with('success', "Building $building->building_number updated");
+    }
+
+    /**
+     * Delete an existing building
+     *
+     * @param Building $building
+     * @return RedirectResponse
+     * @throws LogicException
+     * @throws BindingResolutionException
+     * @throws RouteNotFoundException
+     */
+    public function destroy(Building $building): RedirectResponse
+    {
+        $buildingNumber = $building->building_number;
+        $building->delete();
+
+        return redirect()->route('buildings.index')->with('success', "Building $buildingNumber deleted");
     }
 
     /**
