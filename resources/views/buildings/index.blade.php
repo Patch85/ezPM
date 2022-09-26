@@ -29,7 +29,7 @@
                 <tbody>
                     @foreach ($buildings as $building)
                         <tr class="text-center text-slate-800 odd:bg-slate-100 even:bg-white hover:bg-indigo-300">
-                            <td class="hover:text-indigo-700">
+                            <td class="text-indigo-500 hover:text-indigo-700">
                                 <a href="{{ route('buildings.show', $building) }}">
                                     {{ __($building->building_number) }}
                                 </a>
