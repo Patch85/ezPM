@@ -12,32 +12,40 @@
                 @method('PUT')
                 @csrf
 
-                <x-form.input type="text" name="building_number" class="mt-1 w-full" required autofocus
-                    :value="old('building_number', $building->building_number)" :labelValue="__('Building Number')" />
+                <div class="grid grid-cols-1 md:grid-cols-3 md:gap-4">
+                    <x-form.input type="text" name="building_number" class="w-full" required autofocus :value="old('building_number', $building->building_number)"
+                        :labelValue="__('Building Number')" />
+
+                    <x-form.input type="number" name="floors" class="w-full" required :value="old('floors', $building->floors)" />
+
+                    <x-form.field class="w-full">
+
+                        <x-form.label for="status" id="status-label" labelValue="Status" />
+
+                        <select name="status" id="status-select" :value="old('status')"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            required>
+
+                            <option value="To Do" {{ old('status', $building->status) == 'To Do' ? 'selected' : '' }}>
+                                To Do
+                            </option>
+
+                            <option value="In Progress"
+                                {{ old('status', $building->status) == 'In Progress' ? 'selected' : '' }}>In Progress
+                            </option>
+
+                            <option value="Complete"
+                                {{ old('status', $building->status) == 'Complete' ? 'selected' : '' }}>
+                                Complete</option>
+                        </select>
+                    </x-form.field>
+                </div>
 
                 <x-form.input type="text" name="address" class="w-full" :value="old('address', $building->address)" />
 
-                <x-form.input type="text" name="description" class="w-full" :value="old('description', $building->description)" />
-
-                <x-form.input type="number" name="floors" class="w-full" required :value="old('floors', $building->floors)" />
-
-                <x-form.field class="w-full">
-
-                    <x-form.label for="status" id="status-label" labelValue="Status" />
-
-                    <select name="status" id="status" :value="old('status')"
-                        class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        required>
-                        <option value="To Do" {{ old('status', $building->status) == 'To Do' ? 'selected' : '' }}>To Do
-                        </option>
-                        <option value="In Progress"
-                            {{ old('status', $building->status) == 'In Progress' ? 'selected' : '' }}>In Progress
-                        </option>
-                        <option value="Complete" {{ old('status', $building->status) == 'Complete' ? 'selected' : '' }}>
-                            Complete</option>
-                    </select>
-
-                </x-form.field>
+                <x-form.textarea type="text" name="description" class="w-full" maxlength="500">
+                    {{ old('description', $building->description) }}
+                </x-form.textarea>
 
                 <div class="mt-4">
                     <x-primary-button>Submit</x-primary-button>
