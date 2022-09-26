@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Building
@@ -53,4 +54,14 @@ class Building extends Model
         "In Progress",
         "Complete",
     ];
+
+    /**
+     * Get all of the equipment for the Building
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function equipment(): HasMany
+    {
+        return $this->hasMany(Equipment::class);
+    }
 }
