@@ -23,22 +23,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
-// Buildings
-Route::middleware('auth')->group(function () {
-    Route::get('/buildings', [BuildingController::class, 'index'])->name('buildings.index');
-
-    Route::get('/buildings/new', [BuildingController::class, 'create'])->name('buildings.create');
-
-    Route::post('/buildings/new', [BuildingController::class, 'store'])->name('buildings.store');
-
-    Route::get('/buildings/{building:slug}', [BuildingController::class, 'show'])->name('buildings.show');
-
-    Route::get('/buildings/{building:slug}/edit', [BuildingController::class, 'edit'])->name('buildings.edit');
-
-    Route::put('/buildings/{building:slug}/edit', [BuildingController::class, 'update'])->name('buildings.update');
-
-    Route::delete('/buildings/{building:slug}/delete', [BuildingController::class, 'destroy'])->name('buildings.destroy');
-});
+Route::resource('buildings', BuildingController::class)->parameters([
+    'buildings' => 'building:slug'
+])->middleware('auth');
 
 require __DIR__ . '/auth.php';
