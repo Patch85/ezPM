@@ -27,4 +27,8 @@ Route::resource('buildings', BuildingController::class)->parameters([
     'buildings' => 'building:slug'
 ])->middleware('auth');
 
+Route::resource('equipment', EquipmentController::class)->parameters([
+    'equipment' => 'equipment:slug'
+])->middleware(('auth'));
+
 require __DIR__ . '/auth.php';
