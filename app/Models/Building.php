@@ -45,6 +45,7 @@ class Building extends Model
         'address',
         'floors',
         'status',
+        'slug',
     ];
 
     public $statuses = [

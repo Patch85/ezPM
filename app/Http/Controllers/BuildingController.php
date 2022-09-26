@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use LogicException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
@@ -145,6 +146,8 @@ class BuildingController extends Controller
             'status' => ['required'],
             'floors' => ['required'],
         ]);
+
+        $attributes['slug'] = Str::slug($attributes['building_number']);
 
         return $attributes;
     }

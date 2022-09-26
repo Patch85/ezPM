@@ -21,8 +21,9 @@ class BuildingFactory extends Factory
             'description' => $this->faker->sentence(8, true), // description/name
             'address' => $this->faker->streetAddress(),
             'floors' => $this->faker->randomDigit(),
+            'slug' => $this->faker->slug(),
             'status' => $this->faker->randomElement([
-                'ToDo',
+                'To Do',
                 'In Progress',
                 'Complete',
             ]),

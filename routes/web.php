@@ -32,13 +32,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/buildings/new', [BuildingController::class, 'store'])->name('buildings.store');
 
-    Route::get('/buildings/{building:building_number}', [BuildingController::class, 'show'])->name('buildings.show');
+    Route::get('/buildings/{building:slug}', [BuildingController::class, 'show'])->name('buildings.show');
 
-    Route::get('/buildings/{building:building_number}/edit', [BuildingController::class, 'edit'])->name('buildings.edit');
+    Route::get('/buildings/{building:slug}/edit', [BuildingController::class, 'edit'])->name('buildings.edit');
 
-    Route::put('/buildings/{building:building_number}/edit', [BuildingController::class, 'update'])->name('buildings.update');
+    Route::put('/buildings/{building:slug}/edit', [BuildingController::class, 'update'])->name('buildings.update');
 
-    Route::delete('/buildings/{building:building_number}/delete', [BuildingController::class, 'destroy'])->name('buildings.destroy');
+    Route::delete('/buildings/{building:slug}/delete', [BuildingController::class, 'destroy'])->name('buildings.destroy');
 });
 
 require __DIR__ . '/auth.php';

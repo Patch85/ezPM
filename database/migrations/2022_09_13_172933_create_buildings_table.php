@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
             $table->string('building_number', 10)->unique();
+            $table->string('slug')->unique();
             $table->string('description', 500)->nullable();
             $table->string('address')->nullable();
             $table->string('status')->default('ToDo');
             $table->integer('floors');
-            // $table->integer('known_units')->default(0);
             $table->timestamps();
         });
     }
