@@ -9,7 +9,6 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
@@ -37,25 +36,30 @@ class BuildingController extends Controller
      * @return View|Factory
      * @throws BindingResolutionException
      */
-    public function create()
+    public function create(): View|Factory
     {
-        return view('buildings.create');
+        return view('buildings.form', [
+            'heading' => 'Add a New Building',
+            'building' => new Building,
+            'route' => '/buildings/new',
+        ]);
     }
 
     /**
      * Creates a new building with validated data from the request
      *
      * @param Request $request
-     * @return Redirector
+     * @return RedirectResponse
      * @throws BindingResolutionException
+     * @throws RouteNotFoundException
      */
-    public function store(Request $request): Redirector
+    public function store(Request $request): RedirectResponse
     {
         $attributes = $this->validateBuildingData($request);
 
-        Building::create($attributes);
+        $building = Building::create($attributes);
 
-        return redirect('buildings')->with('success', 'New building added!');
+        return redirect()->route('buildings.show', ['building' => $building])->with('success', "Building $building->building_number added");
     }
 
     /**
@@ -79,7 +83,11 @@ class BuildingController extends Controller
      */
     public function edit(Building $building): View|Factory
     {
-        return view('buildings.edit', ['building' => $building]);
+        return view('buildings.form', [
+            'heading' => "Edit Building $building->building_number",
+            'building' => $building,
+            'route' => route('buildings.update', ['building' => $building])
+        ]);
     }
 
     /**
