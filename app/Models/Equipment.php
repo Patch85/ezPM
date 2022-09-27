@@ -10,6 +10,21 @@ class Equipment extends Model
 {
     use HasFactory;
 
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'type',
+        'description',
+        'room_number',
+        'floor',
+        'functional_status',
+        'pm_status',
+        'slug',
+    ];
 
     /**
      * Get the building that owns the Equipment

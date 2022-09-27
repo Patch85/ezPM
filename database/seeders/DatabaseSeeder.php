@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \App\Models\Building;
+use \App\Models\Equipment;
+use \App\Models\User;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,14 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(5)->create();
-
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => config('app.dev_user_name'),
             'email' => config('app.dev_user_email'),
             'password' => bcrypt(config('app.dev_user_password')),
         ]);
 
-        \App\Models\Building::factory(10)->create();
+        Building::factory(12)
+            ->has(Equipment::factory()->count(12))
+            ->create();
     }
 }
