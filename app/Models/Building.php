@@ -35,6 +35,8 @@ class Building extends Model
 {
     use HasFactory;
 
+    protected $with = ['equipment'];
+
     /**
      * The attributes that are mass assignable.
      *
