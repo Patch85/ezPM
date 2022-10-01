@@ -6,172 +6,85 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="grid grid-cols-3 grid-rows-1 gap-y-4 lg:gap-x-4">
-                <x-card>
-                    <x-slot name='title'>{{ __('In Progress') }}</x-slot>
-                    <x-slot name='content'>
-                        <table class="w-full table-auto">
-                            <thead>
-                                <tr>
-                                    <th class="text-md font-semibold">{{ __('Building') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Room') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Unit') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+    <div class="pt-4">
+        <div class="mx-auto grid max-w-fit grid-cols-3 grid-rows-1 gap-y-4 lg:gap-x-4">
+            <x-card>
+                <x-slot name='title'>{{ __('In Progress') }}</x-slot>
+                <x-slot name='content'>
+                    <x-table.table class="!m-0">
+                        <x-slot name="thead">
+                            <x-table.tr>
+                                <x-table.th>{{ __('Building') }}</x-table.th>
+                                <x-table.th>{{ __('Room') }}</x-table.th>
+                                <x-table.th>{{ __('Unit') }}</x-table.th>
+                            </x-table.tr>
+                        </x-slot>
 
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
+                        <x-slot name="tbody">
+                            @for ($i = 10; $i < 21; $i++)
+                                <x-table.tr class="odd:bg-slate-100 even:bg-white hover:bg-indigo-300">
+                                    <x-table.td>950</x-table.td>
+                                    <x-table.td>{{ 310 + $i }}</x-table.td>
+                                    <x-table.td>A342_FC{{ $i }}_N</x-table.td>
+                                </x-table.tr>
+                            @endfor
+                        </x-slot>
+                    </x-table.table>
+                </x-slot>
+            </x-card>
 
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
+            <x-card>
+                <x-slot name='title'>{{ __('Inaccessible Rooms') }}</x-slot>
+                <x-slot name='content'>
+                    <x-table.table class="!m-0">
+                        <x-slot name='thead'>
+                            <x-table.tr>
+                                <x-table.th>{{ __('Building') }}</x-table.th>
+                                <x-table.th>{{ __('Floor') }}</x-table.th>
+                                <x-table.th>{{ __('Room') }}</x-table.th>
+                                <x-table.th>{{ __('Reason') }}</x-table.th>
+                            </x-table.tr>
+                        </x-slot>
 
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
+                        <x-slot name='tbody'>
+                            @for ($i = 0; $i < 8; $i++)
+                                <x-table.tr class="odd:bg-slate-100 even:bg-white hover:bg-indigo-300">
+                                    <x-table.td class="!px-7">950</x-table.td>
+                                    <x-table.td class="!px-7">3</x-table.td>
+                                    <x-table.td class="!px-7">{{ ((8 * $i + 3) % 11) + 1 }}</x-table.td>
+                                    <x-table.td class="!px-7"> {{ $i % 3 == 1 ? 'Locked' : 'Occupied' }}</x-table.td>
+                                </x-table.tr>
+                            @endfor
+                        </x-slot>
+                    </x-table.table>
+                </x-slot>
+            </x-card>
 
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
+            <x-card>
+                <x-slot name='title'>{{ __('Completed PM') }}</x-slot>
+                <x-slot name='content'>
 
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
+                    <x-table.table class="!m-0">
+                        <x-slot name="thead">
+                            <x-table.tr>
+                                <x-table.th>{{ __('Building') }}</x-table.th>
+                                <x-table.th>{{ __('Room') }}</x-table.th>
+                                <x-table.th>{{ __('Unit') }}</x-table.th>
+                            </x-table.tr>
+                        </x-slot>
 
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </x-slot>
-                </x-card>
-
-                <x-card>
-                    <x-slot name='title'>{{ __('Inaccessible Rooms') }}</x-slot>
-                    <x-slot name='content'>
-                        <table class="w-full table-auto">
-                            <thead>
-                                <tr>
-                                    <th class="text-md font-semibold">{{ __('Building') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Floor') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Room') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Reason') }}</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>3</td>
-                                    <td>324</td>
-                                    <td>Locked</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>3</td>
-                                    <td>354</td>
-                                    <td>Occupied</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>3</td>
-                                    <td>325</td>
-                                    <td>Occupied</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>2</td>
-                                    <td>204</td>
-                                    <td>Locked</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </x-slot>
-                </x-card>
-
-                <x-card>
-                    <x-slot name='title'>{{ __('Completed PMs') }}</x-slot>
-                    <x-slot name='content'>
-                        <table class="w-full table-auto">
-                            <thead>
-                                <tr>
-                                    <th class="text-md font-semibold">{{ __('Building') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Room') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Unit') }}</th>
-                                    <th class="text-md font-semibold">{{ __('Date') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC8</td>
-                                    <td>{{ date('m/d/Y') }}</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>304</td>
-                                    <td>A324_FC14_N</td>
-                                    <td>{{ date('m/d/Y') }}</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>304</td>
-                                    <td>A324_FC14_S</td>
-                                    <td>{{ date('m/d/Y') }}</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                    <td>{{ date('m/d/Y') }}</td>
-                                </tr>
-
-                                <tr class="text-center odd:bg-slate-100 even:bg-white">
-                                    <td>950</td>
-                                    <td>324</td>
-                                    <td>A324_FC14_N</td>
-                                    <td>{{ date('m/d/Y') }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </x-slot>
-                </x-card>
-            </div>
+                        <x-slot name="tbody">
+                            @for ($i = 10; $i < 21; $i++)
+                                <x-table.tr class="odd:bg-slate-100 even:bg-white hover:bg-indigo-300">
+                                    <x-table.td>950</x-table.td>
+                                    <x-table.td>{{ 310 - $i }}</x-table.td>
+                                    <x-table.td>A342_FC{{ $i }}_S</x-table.td>
+                                </x-table.tr>
+                            @endfor
+                        </x-slot>
+                    </x-table.table>
+                </x-slot>
+            </x-card>
         </div>
     </div>
 </x-app-layout>
