@@ -6,57 +6,46 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div
-            class="mx-auto flex w-full max-w-7xl justify-center border-b border-gray-200 bg-white p-6 shadow-sm hover:shadow-indigo-400 sm:rounded-lg lg:px-8">
+    <x-content-panel class="m-4 py-4">
+        <x-table.table>
+            <x-slot name="thead">
+                <x-table.tr>
+                    <x-table.th> {{ __('Building') }} </x-table.th>
 
-            <table class="m-4 table-auto border-b border-gray-200 bg-gray-50 p-4 shadow-sm sm:rounded-lg md:w-4/5">
-                <thead>
-                    <tr>
-                        <th class="text-md font-semibold">
-                            {{ __('Building Number') }}
-                        </th>
+                    <x-table.th> {{ __('Floor') }} </x-table.th>
 
-                        <th class="text-md font-semibold">
-                            {{ __('Floor') }}
-                        </th>
+                    <x-table.th> {{ __('Room') }} </x-table.th>
 
-                        <th class="text-md font-semibold">
-                            {{ __('Room_Number') }}
-                        </th>
+                    <x-table.th> {{ __('Type') }} </x-table.th>
 
-                        <th class="text-md font-semibold">
-                            {{ __('Type') }}
-                        </th>
+                    <x-table.th class="pl-8 text-left"> {{ __('Name') }} </x-table.th>
+                </x-table.tr>
+            </x-slot>
 
-                        <th class="text-md font-semibold">
-                            {{ __('Name') }}
-                        </th>
-                    </tr>
-                </thead>
+            <x-slot name="tbody">
+                @foreach ($equipment as $unit)
+                    <x-table.tr class="odd:bg-slate-100 even:bg-white hover:bg-indigo-300">
 
-                <tbody>
-                    @foreach ($equipment as $unit)
-                        <tr class="text-center text-slate-800 odd:bg-slate-100 even:bg-white hover:bg-indigo-300">
+                        <x-table.td class="text-right">
+                            {{ __($unit->building?->building_number) }}
+                        </x-table.td>
 
-                            <td>{{ __($unit->building?->building_number) }}</td>
+                        <x-table.td class="text-right"> {{ __($unit->floor) }}</x-table.td>
 
-                            <td>{{ __($unit->floor) }}</td>
+                        <x-table.td class="text-right"> {{ __($unit->room_number) }}</x-table.td>
 
-                            <td>{{ __($unit->room_number) }}</td>
+                        <x-table.td> {{ __($unit->type) }}</x-table.td>
 
-                            <td>{{ __($unit->type) }}</td>
+                        <x-table.td class="text-left text-indigo-500 hover:text-indigo-700">
+                            <a href="{{ route('equipment.show', $unit) }}">
+                                {{ __($unit->name) }}
+                            </a>
+                        </x-table.td>
+                    </x-table.tr>
+                @endforeach
+            </x-slot>
+        </x-table.table>
+    </x-content-panel>
 
-                            <td class="text-indigo-500 hover:text-indigo-700">
-                                <a href="{{ route('equipment.show', $unit) }}">
-                                    {{ __($unit->name) }}
-                                </a>
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
     </div>
 </x-app-layout>
