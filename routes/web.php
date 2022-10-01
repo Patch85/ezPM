@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\BuildingController;
-use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\EquipmentController;
 use Illuminate\Support\Facades\Route;
 
 /*

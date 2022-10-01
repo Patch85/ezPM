@@ -16,16 +16,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('buildings.index')" :active="request()->routeIs('buildings')">
+                    <x-nav-link :href="route('buildings.index')" :active="request()->routeIs('buildings.index')">
                         {{ __('Buildings') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="url('/')">
-                        {{ __('PM Reports') }}
+                    <x-nav-link :href="route('equipment.index')" :active="request()->routeIs('equipment.index')">
+                        {{ __('Equipment') }}
                     </x-nav-link>
 
                     <x-nav-link :href="url('/')">
-                        {{ __('Deficiency Sheets') }}
+                        {{ __('Reports') }}
                     </x-nav-link>
                 </div>
             </div>

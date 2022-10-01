@@ -3,18 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipment;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View|Factory
+     * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View|Factory
     {
-        //
+        return view('equipment.index', [
+            'equipment' => Equipment::with('building')->get()->sortBy([
+                ['building.building_number', 'asc'],
+                ['floor', 'asc'],
+                ['room_number', 'asc'],
+                ['type', 'asc'],
+            ])
+        ]);
     }
 
     /**
