@@ -28,7 +28,7 @@
         </div>
     </x-content-panel>
 
-    <x-content-panel>
+    <x-content-panel class="flex justify-center">
 
         <table class="m-4 table-auto border-b border-gray-200 bg-gray-50 p-4 shadow-sm sm:rounded-lg md:w-4/5">
             <thead>

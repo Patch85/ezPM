@@ -12,7 +12,7 @@
         </a>
     </div>
 
-    <x-content-panel class="m-4 py-4">
+    <x-content-panel class="m-4 flex justify-center py-4">
         <x-table.table>
             <x-slot name="thead">
                 <x-table.tr>
