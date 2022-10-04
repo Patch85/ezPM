@@ -53,12 +53,13 @@ class EquipmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Equipment  $equipment
-     * @return \Illuminate\Http\Response
+     * @param Equipment $equipment
+     * @return View|Factory
+     * @throws BindingResolutionException
      */
-    public function show(Equipment $equipment)
+    public function show(Equipment $equipment): View|Factory
     {
-        //
+        return view('equipment.show', ['equipment' => $equipment]);
     }
 
     /**
