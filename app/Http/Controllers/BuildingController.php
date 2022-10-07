@@ -43,7 +43,7 @@ class BuildingController extends Controller
         return view('buildings.form', [
             'heading' => 'Add a New Building',
             'building' => new Building,
-            'route' => '/buildings/new',
+            'route' => route('buildings.store'),
         ]);
     }
 
