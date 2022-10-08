@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('room_number', 10);
             $table->string('floor');
-            $table->string('functional_status')->default('Functional');
+            $table->string('functional_status')->default('Fully Functional');
             $table->string('pm_status')->default('To Do');
             $table->text('description')->nullable();
             $table->foreignIdFor(Building::class);
