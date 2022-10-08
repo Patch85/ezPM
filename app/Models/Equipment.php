@@ -31,7 +31,7 @@ class Equipment extends Model
      *
      * @var string[]
      */
-    public $equipmentTypes = [
+    public static $equipmentTypes = [
         'Air Handler',
         'Fan Coil',
         'VAV',
@@ -43,7 +43,7 @@ class Equipment extends Model
      *
      * @var string[]
      */
-    public $pmStatuses = [
+    public static $pmStatuses = [
         "To Do",
         "In Progress",
         "Complete",
@@ -54,7 +54,7 @@ class Equipment extends Model
      *
      * @var string[]
      */
-    public $functionalStatuses = [
+    public static $functionalStatuses = [
         'Fully Functional',
         'Semi-Functional - Requires Maintenance',
         'Not Functional - Requires Maintenance',

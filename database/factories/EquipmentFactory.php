@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Equipment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,11 +22,7 @@ class EquipmentFactory extends Factory
 
         $words = $faker->words(3, true);
 
-        $type = $faker->randomElement([
-            'Air Handler Unit',
-            'Fan Coil Unit',
-            'VAV',
-        ]);
+        $type = $faker->randomElement(Equipment::$equipmentTypes);
 
         $name = "$type $words";
 
@@ -36,17 +33,8 @@ class EquipmentFactory extends Factory
             'floor' => $faker->randomDigit(),
             'room_number' => $faker->biasedNumberBetween(1, 50),
             'description' => $faker->sentences(8, true),
-            'functional_status' => $faker->randomElement([
-                'Functional',
-                'Functional - Requires Maintenance',
-                'Semi-Functional',
-                'Not Functional',
-            ]),
-            'pm_status' => $faker->randomElement([
-                'To Do',
-                'In Progress',
-                'Complete',
-            ]),
+            'functional_status' => $faker->randomElement(Equipment::$functionalStatuses),
+            'pm_status' => $faker->randomElement(Equipment::$pmStatuses),
         ];
     }
 }

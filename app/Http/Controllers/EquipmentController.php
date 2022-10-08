@@ -75,6 +75,9 @@ class EquipmentController extends Controller
         return view('equipment.form', [
             'heading' => "Edit Equipment: $equipment->name",
             'equipment' => $equipment,
+            'equipmentTypes' => Equipment::$equipmentTypes,
+            'pmStatuses' => Equipment::$pmStatuses,
+            'functionalStatuses' => Equipment::$functionalStatuses,
             'buildings' => Building::all(),
             'route' => route('equipment.update', ['equipment' => $equipment])
         ]);

@@ -26,7 +26,7 @@
                             Select an Equipment Type
                         </option>
 
-                        @foreach ($equipment->equipmentTypes as $equipmentType)
+                        @foreach ($equipmentTypes as $equipmentType)
                             <option value="{{ $equipmentType }}"
                                 {{ old('type', $equipment?->type) == $equipmentType ? 'selected' : '' }}>
                                 {{ $equipmentType }}
@@ -65,7 +65,7 @@
                             Select a status that best describes the equipment's condition
                         </option>
 
-                        @foreach ($equipment->functionalStatuses as $functionalStatus)
+                        @foreach ($functionalStatuses as $functionalStatus)
                             <option value="{{ $functionalStatus }}"
                                 {{ old('functional_status', $equipment?->functional_status) == $functionalStatus ? 'selected' : '' }}>
                                 {{ $functionalStatus }}
@@ -81,7 +81,7 @@
                             Select a PM status
                         </option>
 
-                        @foreach ($equipment->pmStatuses as $pmStatus)
+                        @foreach ($pmStatuses as $pmStatus)
                             <option value="{{ $pmStatus }}"
                                 {{ old('pm_status', $equipment?->pm_status) == $pmStatus ? 'selected' : '' }}>
                                 {{ $pmStatus }}
