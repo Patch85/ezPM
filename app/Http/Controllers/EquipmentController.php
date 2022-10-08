@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Building;
 use App\Models\Equipment;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
@@ -63,14 +64,20 @@ class EquipmentController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing equipment
      *
-     * @param  \App\Models\Equipment  $equipment
-     * @return \Illuminate\Http\Response
+     * @param Equipment $equipment
+     * @return View|Factory
+     * @throws BindingResolutionException
      */
-    public function edit(Equipment $equipment)
+    public function edit(Equipment $equipment): View|Factory
     {
-        //
+        return view('equipment.form', [
+            'heading' => "Edit Equipment: $equipment->name",
+            'equipment' => $equipment,
+            'buildings' => Building::all(),
+            'route' => route('equipment.update', ['equipment' => $equipment])
+        ]);
     }
 
     /**
