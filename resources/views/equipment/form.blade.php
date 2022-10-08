@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <x-content-panel class="m-4 py-4">
+    <x-content-panel class="m-4 flex py-4">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
             <form action="{{ $route }}" method="post">
@@ -18,8 +18,8 @@
 
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 
-                    <x-form.input type="text" name="name" class="w-full" :value="old('name', $equipment?->name)" placeholder="FCU_01_N"
-                        required autofocus />
+                    <x-form.input type="text" name="name" class="w-full" placeholder="FCU_01_N" required autofocus
+                        :value="old('name', $equipment?->name)" />
 
                     <x-form.select name="type" class="w-full" :labelValue="__('Unit Type')">
                         <option value="" disabled {{ empty(old('type', $equipment?->type)) ? 'selected' : '' }}>
@@ -37,13 +37,16 @@
 
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 
-                    <x-form.select name="building">
+                    <x-form.select name="building_id" :labelValue="__('Building Number')">
 
-                        <option value="" selected disabled>Select a Building</option>
+                        <option value=""
+                            {{ empty(old('building_id', $equipment?->building?->id ? 'selected' : '')) }} disabled>
+                            Select a Building
+                        </option>
 
                         @foreach ($buildings as $building)
                             <option value="{{ $building->id }}"
-                                {{ old('building', $equipment->building->id) == $building->id ? 'selected' : '' }}>
+                                {{ old('building_id', $equipment->building?->id) == $building->id ? 'selected' : '' }}>
                                 {{ $building->building_number }}
                             </option>
                         @endforeach
@@ -58,7 +61,7 @@
 
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 
-                    <x-form.select name="functional_status" class=w-full :labelValue="__('Functional Status')">
+                    <x-form.select name="functional_status" class=w-full :labelValue="__('Condition')">
 
                         <option value="" disabled
                             {{ empty(old('functional_status', $equipment?->functional_status)) ? 'selected' : '' }}>
