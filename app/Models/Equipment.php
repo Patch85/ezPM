@@ -10,7 +10,7 @@ class Equipment extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -24,6 +24,41 @@ class Equipment extends Model
         'functional_status',
         'pm_status',
         'slug',
+    ];
+
+    /**
+     * An array of valid equipment types
+     *
+     * @var string[]
+     */
+    public $equipmentTypes = [
+        'Air Handler',
+        'Fan Coil',
+        'VAV',
+        'Infrared',
+    ];
+
+    /**
+     * An array of valid PM statuses.
+     *
+     * @var string[]
+     */
+    public $pmStatuses = [
+        "To Do",
+        "In Progress",
+        "Complete",
+    ];
+
+    /**
+     * An array of statuses that can describe the equipment's condition
+     *
+     * @var string[]
+     */
+    public $functionalStatuses = [
+        'Fully Functional',
+        'Semi-Functional - Requires Maintenance',
+        'Not Functional - Requires Maintenance',
+        'Not Functional - Requires Installation',
     ];
 
     /**
