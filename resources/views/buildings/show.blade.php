@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-slate-600">
-            {{ __('Building Details') }}
+            {{ __("Building $building->building_number Details") }}
         </h2>
     </x-slot>
 

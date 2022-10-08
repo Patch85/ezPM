@@ -38,7 +38,7 @@
 
                 <x-form.input type="text" name="address" class="w-full" :value="old('address', $building?->address)" />
 
-                <x-form.textarea type="text" name="description" class="w-full" maxlength="500">
+                <x-form.textarea name="description" class="w-full" maxlength="500">
                     {{ old('description', $building?->description) }}
                 </x-form.textarea>
 
