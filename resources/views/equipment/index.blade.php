@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <x-content-panel class="m-4 py-4">
+    <x-content-panel class="m-4 py-4 flex justify-center">
         <x-table.table>
             <x-slot name="thead">
                 <x-table.tr>
