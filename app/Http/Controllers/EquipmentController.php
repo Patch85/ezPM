@@ -57,14 +57,36 @@ class EquipmentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created equipment resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws BindingResolutionException
+     * @throws RouteNotFoundException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $attributes = $this->validateEquipmentData($request);
+
+        $equipment = new Equipment();
+
+        $equipment->name = $attributes['name'];
+        $equipment->type = $attributes['type'];
+        $equipment->description = $attributes['description'];
+        $equipment->room_number = $attributes['room_number'];
+        $equipment->floor = $attributes['floor'];
+        $equipment->functional_status = $attributes['functional_status'];
+        $equipment->pm_status = $attributes['pm_status'];
+        $equipment->slug = $attributes['slug'];
+
+        $building = Building::find($attributes['building_id']);
+        $equipment->building()->associate($building);
+
+        $equipment->save();
+
+        return redirect()
+            ->route('equipment.show', ['equipment' => $equipment])
+            ->with('success', "New Equipment $equipment->name added");
     }
 
     /**
