@@ -6,7 +6,14 @@
         </h2>
     </x-slot>
 
-    <x-content-panel class="m-4 py-4 flex justify-center">
+    <div class="ml-12 mt-4">
+        <a href="{{ route('equipment.create') }}">
+            <x-primary-button>Add Equipment</x-primary-button>
+        </a>
+    </div>
+
+    <x-content-panel class="m-4 flex justify-center py-4">
+
         <x-table.table>
             <x-slot name="thead">
                 <x-table.tr>

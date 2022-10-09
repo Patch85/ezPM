@@ -40,13 +40,13 @@
                     <x-form.select name="building_id" :labelValue="__('Building Number')">
 
                         <option value=""
-                            {{ empty(old('building_id', $equipment?->building?->id ? 'selected' : '')) }} disabled>
+                            {{ empty(old('building_id', $equipment?->building?->id)) ? 'selected' : '' }} disabled>
                             Select a Building
                         </option>
 
                         @foreach ($buildings as $building)
                             <option value="{{ $building->id }}"
-                                {{ old('building_id', $equipment->building?->id) == $building->id ? 'selected' : '' }}>
+                                {{ old('building_id', $equipment?->building?->id) == $building->id ? 'selected' : '' }}>
                                 {{ $building->building_number }}
                             </option>
                         @endforeach

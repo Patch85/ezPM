@@ -36,14 +36,24 @@ class EquipmentController extends Controller
         ]);
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating new equipment
      *
-     * @return \Illuminate\Http\Response
+     * @return View|Factory
+     * @throws BindingResolutionException
      */
-    public function create()
+    public function create(): View|Factory
     {
-        //
+        return view('equipment.form', [
+            'heading' => 'Add New Equipment',
+            'equipment' => new Equipment,
+            'equipmentTypes' => Equipment::$equipmentTypes,
+            'pmStatuses' => Equipment::$pmStatuses,
+            'functionalStatuses' => Equipment::$functionalStatuses,
+            'buildings' => Building::all()->sortBy(['building.building_number', 'asc'], SORT_NUMERIC),
+            'route' => route('equipment.store'),
+        ]);
     }
 
     /**
